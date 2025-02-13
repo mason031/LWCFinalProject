@@ -1,8 +1,8 @@
 <template>
-    <lightning-layout class = "layout">
+    <lightning-layout class="layout">
         <lightning-layout-item>
-            <div class = "slds-card ">
-                <div class = "slds-card__header">
+            <div class="slds-card slds-m-around_medium">
+                <div class="slds-card__header">
                     <div class="slds-text-heading_large">
                         <strong>
                             <lightning-formatted-rich-text value="Your Profile Info"></lightning-formatted-rich-text>
@@ -10,37 +10,43 @@
                     </div>
                 </div>
                 <template lwc:if={user}>
-                <div class = "slds-grid slds-gutters slds-wrap">
-                    <div class = "slds-col slds-size_1-of-4">
-                        <template lwc:if={photourl}>
-                        <img src ={photourl}>
-                    </template>
-                    </div>
-                    <div class = "slds-col slds-size_3-of-4">
-                       <lightning-record-form object-api-name="User" record-id={recordid} fields={fields}>
-                       
-                       </lightning-record-form>
-                    </div>
-                </div>
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <div class="slds-col slds-size_1-of-4">
+                            <template lwc:if={photourl}>
+                                <img src={photourl} class="photo">
+                            </template>
+                        </div>
+                        <div class="slds-col slds-size_3-of-4">
+                            <lightning-record-form object-api-name="User" record-id={recordid} fields={fields}>
 
-            </template>
+                            </lightning-record-form>
+                        </div>
+                    </div>
+
+                </template>
             </div>
         </lightning-layout-item>
-        <div class = "slds-card">
-        <div class = "slds-grid slds-wrap slds-gutters">
-        <template lwc:if={favList}>
-        <template for:each={favList.data} for:item="property">
-        
-                <div class = "slds-col slds-size_1-of-3" key ={property.Id}>
-                <c-property-overview-card propertyid ={property.Id} onupdate={handleUpdate}></c-property-overview-card>
+        <div class="slds-card slds-m-around_medium">
+            <div class="slds-card__header">
+                <div class="slds-text-heading_large">
+                    <strong>
+                        <lightning-formatted-rich-text value="Your Favorited Properties"></lightning-formatted-rich-text>
+                    </strong>
                 </div>
-        </template>
-    </template>
-</div>
-        </div>
-        <lightning-layout-item>
+            </div>
+            <div class="slds-grid slds-wrap slds-gutters">
+                <template lwc:if={favList}>
+                    <template for:each={favList.data} for:item="property">
 
-        </lightning-layout-item>
+                        <div class="slds-col slds-size_1-of-3" key={property.Id}>
+                            <c-property-overview-card propertyid={property.Id}
+                                onupdate={handleUpdate}></c-property-overview-card>
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </div>
+
 
 
     </lightning-layout>

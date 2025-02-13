@@ -12,6 +12,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import LightningAlert from 'lightning/alert';
 import { refreshApex } from '@salesforce/apex';
 
+
 export default class PropertyOverviewCard extends LightningElement {
     @api
     propertyid;
@@ -169,5 +170,7 @@ export default class PropertyOverviewCard extends LightningElement {
         
         console.log("refreshed favorite"+ this.favorite);
     }
+
+    
     
 }

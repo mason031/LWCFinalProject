@@ -4,7 +4,8 @@ import {getListRecordsByName} from 'lightning/uiListsApi';
 import getPropertyById from '@salesforce/apex/PropertyHelper.getPropertyById';
 import getFilesById from '@salesforce/apex/PropertyHelper.getFilesById';
 import getCloseProperties from '@salesforce/apex/PropertyHelper.getCloseProperties';
-import PROPERTY_OBJECT from '@salesforce/schema/Property__c'
+import PROPERTY_OBJECT from '@salesforce/schema/Property__c';
+import Webtolead from 'c/webtolead';
 export default class Propertydetailspage extends LightningModal {
 
     @api
@@ -140,5 +141,11 @@ export default class Propertydetailspage extends LightningModal {
                 }`;
                 this.template.querySelector('lightning-carousel').appendChild(style);
             
+        }
+        async openModal(){
+            const result = await Webtolead.open({
+                size:'small',
+                description:'Web-to-Lead form'
+            });
         }
 }

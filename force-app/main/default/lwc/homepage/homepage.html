@@ -6,20 +6,27 @@
     </template> -->
     <div class = "slds-grid_vertical">
     <div class="slds-col">
+        <div class = "slds-card__header slds-align_absolute-center slds-m-vertical_medium">
+            <div class = "slds-text-heading_large">
+                <strong>
+                    Find the Home You've Been Looking For!
+                </strong>
+            </div>
+        </div>
         <div class ="slds-form-element">
             <div class ="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
                 <button class=" slds-button slds-button_icon slds-input__icon slds-input__icon_right" onclick={handleSearch}>
                     <lightning-icon icon-name="utility:search" size="x-small"></lightning-icon>
                 </button>
                 
-                <input class ="slds-input" type="text" placeholder="Enter an address..." lwc:ref="search"></input>
+                <input class ="slds-input" type="text" placeholder="Enter an address, city, or ZIP code..." lwc:ref="search"></input>
             </div>
         </div>
     </div>
     <template if:true={distanceProperties}>
     
     <div class = "slds-col">
-        <div class = "slds-card__header slds-align_absolute-center">
+        <div class = "slds-card__header slds-align_absolute-center slds-m-vertical_medium">
             <div class = "slds-text-heading_large">
                 <strong>
                     Here are listings near your search
@@ -35,7 +42,7 @@
         </div>
     </div>
     </template>
-    <div class = "slds-card__header slds-align_absolute-center">
+    <div class = "slds-card__header slds-align_absolute-center slds-m-vertical_medium">
     <div class = "slds-text-heading_large">
         <strong>
             Featured Listings In Your Area

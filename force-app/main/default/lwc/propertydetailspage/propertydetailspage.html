@@ -1,119 +1,135 @@
 <template>
-    
+
     <lightning-modal-body>
-    <lightning-layout vertical-align="center" class="layout">
-        <div class = "slds-heading_large">
-            <strong>
-            <lightning-formatted-text value={formattedaddress}
-                    format-style="capitalize"></lightning-formatted-text>
-            </strong>
-            
-     
-        </div>
-        <lightning-layout-item class = "carousel" padding ="around-small">
-            <template lwc:if={fileUrls}>
-            <lightning-carousel >
-                <template for:each={fileUrls} for:item="url">
-                 
-                        <lightning-carousel-image class="slds-carousel__image" key={url.Id} src={url.VersionDataUrl}>
-                        </lightning-carousel-image>
+        <lightning-layout vertical-align="center" class="layout">
+            <div class="slds-heading_large">
+                <strong>
+                    <lightning-formatted-text value={formattedaddress}
+                        format-style="capitalize"></lightning-formatted-text>
+                </strong>
+
+
+            </div>
+            <lightning-layout-item class="carousel" padding="around-small">
+                <template lwc:if={fileUrls}>
+                    <lightning-carousel>
+                        <template for:each={fileUrls} for:item="url">
+
+                            <lightning-carousel-image class="slds-carousel__image" key={url.Id}
+                                src={url.VersionDataUrl}>
+                            </lightning-carousel-image>
+
+                        </template>
+                    </lightning-carousel>
+                </template>
+            </lightning-layout-item>
+            <template lwc:if={property}>
+                <lightning-layout-item class="layout">
+                    <div class="slds-card">
+                        <div class="slds-card__header">
+                            <div class="slds-grid slds-gutters">
+                                <div class="slds-col slds-size_4-of-5">
+                                    <div class="slds-text-heading_large">
+
+                                        <strong>
+                                            <lightning-formatted-number value={property.Price__c}
+                                                format-style="currency"></lightning-formatted-number>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <div class="slds-col_bump-left slds-size_1-of-5 ">
+                                    <lightning-button variant="brand" label="Contact Agent"
+                                        onclick={openModal}></lightning-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-border_bottom slds-m-vertical_small"></div>
                     
-                </template>
-            </lightning-carousel>
-        </template>
-        </lightning-layout-item>
-        <template lwc:if={property}>
-        <lightning-layout-item class="layout">
-            <div class = "slds-card">
-            <div class ="slds-card__header">
-                <div class="slds-text-heading_large">
-                    <strong>
-                    <lightning-formatted-number value={property.Price__c}
-                            format-style="currency"></lightning-formatted-number>
-                    </strong>
-                </div>
-            </div>   
                 
-                <div class ="slds-border_bottom"></div>
-                <div class = "slds-heading_medium">
-                    {property.Description__c}
-                </div>
-                <div class = "slds-border_bottom"></div>
-                <div class = "slds-heading_large">
-                    <strong>
-                        Property Features
-                    </strong>
-                </div>
-                <ul class = "slds-list_horizontal slds-has-block-links_space">
-                    <li class = "slds-item">
-                        <div>
-                            Bedrooms
-                        <ul class = "slds-list_dotted">
-                            <li>{property.Num_of_Beds__c} Bed(s)</li>
-                        </ul>
+                    <div class = "slds-grid slds-gutters">
+                    <div class = "slds-col slds-size_1-of-2">
+                        <div class="slds-text-heading_large">
+                            Property Features
                         </div>
-                    </li>
-                    <li class = "slds-item">
-                        <div>
-                            Bathrooms
-                            <ul class = "slds-list_dotted">
-                                <li>{property.Num_of_Baths__c} Bath(s)</li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-                <ul class = "slds-list_horizontal slds-has-block-links_space">
-                    <li class = "slds-item">
-                        <div>
-                        Square footage
-                        <ul class = "slds-list_dotted">
-                        <li>{property.Square_Footage__c} sq ft.</li>
-                        </ul>
+                    <ul class="slds-list">
+
+                        <li class="slds-item">
+                            <div>
+                                Bedrooms
+                                <ul class="slds-list_dotted">
+                                    <li>{property.Num_of_Beds__c} Bed(s)</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="slds-item">
+                            <div>
+                                Bathrooms
+                                <ul class="slds-list_dotted">
+                                    <li>{property.Num_of_Baths__c} Bath(s)</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="slds-item">
+                            <div>
+                                Square footage
+                                <ul class="slds-list_dotted">
+                                    <li>{property.Square_Footage__c} sq ft.</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="slds-item">
+                            <div>
+                                Amenities
+                                <ul class="slds-list_dotted">
+                                    <template for:each={features} for:item="feature">
+                                        <li key={feature}>{feature}</li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class = "slds-col slds-size_1-of-2">
+                    <div class="slds-text-heading_large">
+                        Property Description
                     </div>
-                    </li>
-                    <li class = "slds-item">
-                        <div>
-                            Amenities
-                        <ul class = "slds-list_dotted">
-                            <template for:each={features} for:item="feature">
-                                <li key = {feature}>{feature}</li>
+                    <div class="slds-heading_medium">
+                        {property.Description__c}
+                    </div>
+                </div>
+                </div>
+                    <div class="slds-border_bottom slds-m-vertical_small"></div>
+                    <div class="slds-card__header">
+                        <div class="slds-text-heading_large">
+                           
+                                View Your Home
+                           
+                        </div>
+                    </div>
+                    <lightning-map map-markers={mapMarkers}></lightning-map>
+
+
+                    <div class="slds-border_bottom slds-m-vertical_small"></div>
+                    <div class="slds-card__header">
+                        <div class="slds-text-heading_large">                          
+                                Other Nearby Properties                         
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <template lwc:if={closeproperties}>
+                            <template for:each={closeproperties} for:item="property">
+                                <div class="slds-col slds-size_1-of-3" key={property.Id}>
+
+                                    <c-property-overview-card propertyid={property.Id}></c-property-overview-card>
+                                </div>
                             </template>
-                        </ul>
+                        </template>
                     </div>
-                    </li>
-                </ul>
-                <div class = "slds-border_bottom"></div> 
-                <div class = "slds-card__header">
-                <div class = "slds-heading_large">
-                    <strong>
-                        View Your Home
-                    </strong>
-                </div>
-            </div> 
-                <lightning-map map-markers={mapMarkers}></lightning-map>        
-            </div>
-            
-            <div class = "slds-border_bottom"></div> 
-            <div class = "slds-card__header">
-                <div class = "slds-heading_large">
-                    <strong>
-                        Other Nearby Properties
-                    </strong>
-                </div>
-            </div> 
-            <div class = "slds-grid slds-gutters slds-wrap">
-                <template lwc:if={closeproperties}>
-                <template for:each={closeproperties} for:item="property">
-                    <div class = "slds-col slds-size_1-of-3" key ={property.Id}>
-                        
-                    <c-property-overview-card  propertyid={property.Id}></c-property-overview-card>
-                </div>
+                </lightning-layout-item>
             </template>
-                </template>
-            </div>
-        </lightning-layout-item>
-    </template>
-    
-</lightning-layout>
-</lightning-modal-body>
+
+        </lightning-layout>
+    </lightning-modal-body>
 </template>

@@ -1,5 +1,5 @@
 <template>
-
+            <div class = "header">
             <img src={logo} class = "logo">
             <div class="slds-grid slds-grid_align-center slds-gutters">
                 
@@ -16,14 +16,20 @@
             </div>           
                 <div class ="custom-col slds-col slds-size_1-of-4">
                     <div class = "style">
-                    <button class="slds-button slds-text-link_reset" name="Account" value="Account" onclick={nav}>Account</button>
+                        <template lwc:if={guest}>
+                            <a class='slds-button' href="/login" >Account</a>
+                    </template>
+                    <template lwc:else>
+                        <button class="slds-button slds-text-link_reset" name="Account" value="Account" onclick={nav}>Account</button>
+                    </template>
                 </div>
                 </div>
                 <div class="custom-col slds-col slds-size_1-of-4">
                     <div class = "style">
-                    <lightning-formatted-url class='login' value="/login" label="Login"></lightning-formatted-url>
+                    <a class='slds-button login' href="/login" >Login</a>
                 </div>
                 </div>
+            </div>
          
     </div>
 </template>
