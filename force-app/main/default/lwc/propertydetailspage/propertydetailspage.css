@@ -1,0 +1,31 @@
+.layout{
+    display:flex;
+    flex-direction:column;
+}
+.carousel{
+    height:auto;
+    width:400px;
+    
+    overflow:hidden;
+}
+.carousel .slds-carousel__image{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+} 
+ 
+.slds-card{
+    padding: 16px;
+}
+.slds-border_bottom{
+    padding:10px;
+    padding-bottom: 10px;
+}
+
+.slds-item{
+    padding-right:15px;
+}
+
+lightning-formatted-text {
+    font-size: 30px;
+}

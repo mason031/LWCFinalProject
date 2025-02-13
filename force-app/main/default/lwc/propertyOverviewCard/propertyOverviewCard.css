@@ -1,0 +1,28 @@
+.image{
+   border-radius: 5px;
+   width: 100%;
+   aspect-ratio: 1/1;
+   height: auto;
+   object-fit:contain;
+   
+ }
+
+ .slds-media__figure{
+   width:100%;
+ }
+
+ .slds-card__body{
+    padding-left:16px;
+    
+ }
+
+.click{
+  cursor:pointer;
+}
+.click:hover{
+  filter:brightness(75%);
+}
+
+.icon{
+  --slds-c-icon-color-foreground-default: yellow;
+}

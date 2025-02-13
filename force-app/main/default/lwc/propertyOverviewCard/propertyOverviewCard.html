@@ -1,0 +1,64 @@
+<template>
+    <div class = "click" onclick={handlecardclick}>
+   
+    <div class="slds-card slds-grid_vertical">
+        <template lwc:if={favorite}>
+            <lightning-icon icon-name="utility:favorite" onclick={deleteFavorite} class = "icon"></lightning-icon>
+        </template>
+        <template lwc:else>
+            <lightning-icon icon-name="utility:favorite_alt" onclick={createFavorite} class = "icon"></lightning-icon>
+        </template>
+        <template lwc:if={property}>
+            <div class="slds-card__header slds-grid">
+                <div class="slds-media slds-media_responsive">
+                    <div class="slds-media__figure">
+                        <img src={fileUrl} class = "image">
+                    </div>
+                </div>
+            </div>
+            <div class="slds-card__body slds-grid">
+                <div class="slds-text-heading_large">
+                    <strong>
+                        <lightning-formatted-number value={property.Price__c}
+                            format-style="currency"></lightning-formatted-number>
+                    </strong>
+                </div>
+            </div>
+            <div class="slds-card__body">
+                <ul class="slds-list_horizontal slds-has-dividers_left slds-has-block-links">
+                    <li class="slds-item">
+                        <div class ="slds-heading_medium">
+                        <strong>
+                            {property.Num_of_Beds__c}
+                        </strong>
+                        &nbsp;Beds
+                        </div>
+                    </li>
+                    <li class="slds-item">
+                        <div class ="slds-heading_medium">
+                        <strong>
+                            {property.Num_of_Baths__c}
+                        </strong>
+                        &nbsp;Baths
+                        </div>
+                    </li>
+                    <li class="slds-item">
+                        <div class ="slds-heading_medium">
+                        <strong>
+                            {property.Square_Footage__c}
+                        </strong>
+                        &nbsp;sq&nbsp;ft.
+                        </div>
+                    </li>
+                </ul>           
+            </div>
+            <div class ="slds-card__body">
+                <p class="slds-heading_medium">
+                    {property.Address__c.street},&nbsp;{property.Address__c.city},&nbsp;{property.Address__c.stateCode},&nbsp;{property.Address__c.postalCode}
+                </p>
+                
+            </div>    
+        </template>
+    </div>
+</div>
+</template>

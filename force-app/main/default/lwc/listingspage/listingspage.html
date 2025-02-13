@@ -1,0 +1,86 @@
+<template>
+    <div>listings</div>
+    <div class = "slds-grid slds-gutters">
+        <div class = "slds-col slds-size_4-of-5">
+            <div class = "slds-card__header slds-align_absolute-center">
+                <div class = "slds-text-heading_large">
+                <strong>
+                    All Listings
+                </strong>
+            </div>
+            </div>
+        </div>
+        <div class = "slds-col slds-size_1-of-5">
+            <lightning-combobox label = "Sort By" value ={sortby} placeholder="Sort By" options ={sortoptions} onchange={handleSortChange}></lightning-combobox>
+        </div>
+    </div>
+    <div class = "slds-grid slds-gutters">
+        <div class = "slds-col slds-size_1-of-5">
+            <div class = "slds-card slds-grid_vertical">
+            <div class = "slds-card__header slds-align_absolute-center">
+                <div class = "slds-text-heading_large">
+                    <strong>
+                        Filters
+                    </strong>
+                </div>
+            </div>
+            <div class = "slds-card__body">
+                <!-- <div class = "slds-text-heading_large">
+                    <strong>
+                        Price
+                    </strong>
+                </div>
+                <c-doubleslider min = "0" max ="100" step ="1" start="10" end = "40"></c-doubleslider> -->
+                <lightning-accordion allow-multiple-sections-open onsectiontoggle={handleSectionToggle} active-selection-name={activeSections}>
+                    <lightning-accordion-section  name="PropType" label="Property Type">
+                      <lightning-checkbox-group label = "Property Type" options={propertyTypeOptions} value={propertyTypes} onchange={handlePropertyTypeChange}>
+                        
+                      </lightning-checkbox-group>
+                      {propertyTypes}
+                      {propertyTypes.length}
+                    </lightning-accordion-section>
+
+                    <lightning-accordion-section name ="Bedroom" label="Number of Bedrooms">
+                        <lightning-radio-group label = "Number of Bedrooms" options={bedroomOptions} value={bedrooms} onchange={handleBedroomChange} type="button">
+                        </lightning-radio-group>
+                        {bedrooms}
+                    </lightning-accordion-section>
+
+                    <lightning-accordion-section name ="Bathroom" label="Number of Bathrooms">
+                        <lightning-radio-group label = "Number of Bathrooms" options={bathroomOptions} value={bathrooms} onchange={handleBathroomChange} type="button">
+                        </lightning-radio-group>
+                        {bathrooms}
+                    </lightning-accordion-section>
+
+                    <lightning-accordion-section name ="Price" label = "Price">
+                        {minprice}
+                        {maxprice}
+                        <c-doubleslider lwc:ref = "sliderComponent" onsliderchange ={handlePriceChange} min = "0" max ="5000000" step ="100000" start="0" end = "5000000"></c-doubleslider>
+                    </lightning-accordion-section>
+                    <lightning-accordion-section  name="Features" label="Features">
+                    <lightning-checkbox-group label = "Features" options={featureOptions} value={features} onchange={handleFeatureChange}>
+                        
+                    </lightning-checkbox-group>
+                    {features}
+                    {features.length}
+
+                  </lightning-accordion-section>
+                </lightning-accordion>
+            </div>
+        </div>
+        </div>
+    <div class = "slds-col slds-size_4-of-3">
+    <div class = "slds-grid slds-wrap slds-gutters">
+        <template lwc:if={propList}>
+        
+        <template for:each={propList.data.records} for:item="property">
+            <div class = "slds-col slds-size_1-of-3" key={property.Id}>
+                
+                <c-property-overview-card onupdate ={handleUpdate} propertyid={property.fields.Id.value}></c-property-overview-card>
+            </div>
+        </template>
+    </template>
+    </div>
+</div>
+</div>
+</template>

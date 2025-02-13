@@ -1,0 +1,22 @@
+<template>
+    <lightning-layout class = "layout">
+    <lightning-layout-item>
+    <c-header onchangepageevent={changePage}></c-header>
+    </lightning-layout-item>
+    <lightning-layout-item>
+    <template lwc:if={renderHome}>
+        <c-homepage></c-homepage>
+    </template>
+</lightning-layout-item>
+<lightning-layout-item>
+    <template lwc:if={renderListings}>
+        <c-listingspage></c-listingspage>
+    </template>
+</lightning-layout-item>
+<lightning-layout-item>
+    <template lwc:if={renderAccount}>
+        <c-accountpage></c-accountpage>
+    </template>
+</lightning-layout-item>
+</lightning-layout>
+</template>

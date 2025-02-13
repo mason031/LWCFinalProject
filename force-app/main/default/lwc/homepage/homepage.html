@@ -1,0 +1,77 @@
+<template>
+    <!-- <template for:each={featuredProperties} for:item="property">
+        <c-property-overview-card key ={property.Id} propertyid={property.Id}>
+            {property.Id}
+        </c-property-overview-card>
+    </template> -->
+    <div class = "slds-grid_vertical">
+    <div class="slds-col">
+        <div class ="slds-form-element">
+            <div class ="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                <button class=" slds-button slds-button_icon slds-input__icon slds-input__icon_right" onclick={handleSearch}>
+                    <lightning-icon icon-name="utility:search" size="x-small"></lightning-icon>
+                </button>
+                
+                <input class ="slds-input" type="text" placeholder="Enter an address..." lwc:ref="search"></input>
+            </div>
+        </div>
+    </div>
+    <template if:true={distanceProperties}>
+    
+    <div class = "slds-col">
+        <div class = "slds-card__header slds-align_absolute-center">
+            <div class = "slds-text-heading_large">
+                <strong>
+                    Here are listings near your search
+                </strong>
+            </div>
+        </div>
+        <div class = "slds-grid slds-gutters slds-align_absolute-center">
+            <template for:each={distanceProperties} for:item="property">
+                <div class = "slds-col slds-size_1-of-3" key={property.Id}>
+                    <c-property-overview-card propertyid={property.Id}></c-property-overview-card>
+                </div>
+            </template>
+        </div>
+    </div>
+    </template>
+    <div class = "slds-card__header slds-align_absolute-center">
+    <div class = "slds-text-heading_large">
+        <strong>
+            Featured Listings In Your Area
+        </strong>
+    </div>
+    </div>
+    <div class = "slds-col">
+    <div class="slds-carousel">
+        <div class="slds-carousel__stage">
+            <div class="slds-carousel__panels">
+                <template for:each={featuredProperties} for:item="property" for:index="index">
+                    <template lwc:if={property.visible}>
+                    <div id={property.panelId} class="slds-carousel__panel slds-align_absolute-center" role="tabpanel" key ={property.Id} aria-labelledby ={property.indicatorId}>
+                        <!-- <a class ="slds-carousel__panel-action" tabindex={property.tabIndex}> -->
+                        <c-property-overview-card propertyid={property.Id}></c-property-overview-card>
+                
+                    
+                    </div>
+                </template>
+                </template>
+            </div>
+            <ul class="slds-carousel__indicators" role = "tablist">
+                <template for:each={featuredProperties} for:item="property" for:index="index">
+                    <li class="slds-carousel__indicator" key={property.Id} role ="presentation">
+                        <a id ={property.indicatorId} class = "slds-carousel__indicator-action" role = "tab" 
+                        tabindex ={property.tabIndex} aria-selected={property.visible} aria-controls={property.panelId} 
+                        onclick={handleClick} data-value={index}></a>
+                    </li>
+                </template>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+</template>

@@ -1,0 +1,10 @@
+.slds-carousel__panel{
+    max-height: 30%;
+    max-width: 30%;
+    
+}
+.slds-form-element{
+    width:50%;
+    margin-left:auto;
+    margin-right:auto;
+}

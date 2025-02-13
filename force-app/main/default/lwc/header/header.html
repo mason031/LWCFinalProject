@@ -1,0 +1,29 @@
+<template>
+
+            <img src={logo} class = "logo">
+            <div class="slds-grid slds-grid_align-center slds-gutters">
+                
+                <div class="custom-col slds-col slds-size_1-of-4">
+                    <div class = "style">
+                    <button class="slds-button slds-text-link_reset" name="Home" value="Home" onclick={nav}>Home</button>
+                </div>
+            </div>
+            
+                <div class="custom-col slds-col slds-size_1-of-4">
+                    <div class = "style">
+                    <button class="slds-button slds-text-link_reset" name="All Listings" value="All Listings" onclick={nav}>All Listings</button>
+                </div>
+            </div>           
+                <div class ="custom-col slds-col slds-size_1-of-4">
+                    <div class = "style">
+                    <button class="slds-button slds-text-link_reset" name="Account" value="Account" onclick={nav}>Account</button>
+                </div>
+                </div>
+                <div class="custom-col slds-col slds-size_1-of-4">
+                    <div class = "style">
+                    <lightning-formatted-url class='login' value="/login" label="Login"></lightning-formatted-url>
+                </div>
+                </div>
+         
+    </div>
+</template>
